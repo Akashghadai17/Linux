@@ -1,0 +1,83 @@
+Create a account in AWS:
+------------------------
+
+Steps for conncting EC2 virtual machine to local computer:
+----------------------------------------------------------
+Cretating EC2 instances
+-----------------------
+Step1:
+     Aws search EC2 
+Step2:
+     Go to instances-->Lunch instances
+Step3:
+     Name and tags[xxxxxxxxx] Give a name of your virtual machine 
+     Example Name and tags[My-linux-vm]
+Step4:
+     Choose AMAZON LINUX --> in Description Username is there [ec2-user]
+     it is the default username it used in login time.
+Step5:
+     Key pair (login) -Create a key for login in local machine to connect VM.
+     Example; Create new key pair --> Enter key pair name[Key1] -->Create key pair
+              --> Automaticaly downloard [Key1.pem] file
+Step6:
+     Lunch Instances --> Go to instances --> Click checkBox of your Ec2 instance
+Step7:
+     It show Details --> Copy pubic ip
+
+Connecting VM to local computer MobaXterm
+-----------------------------------------
+Step1:
+     Open MobaXterm --> Click On Session
+Step2:
+     It show diffrent protocols for connecting VM.
+     Example:
+    |----------------|-------------------------------|-------------------------------|
+    | Protocol       | Used For (OS / VM)             | Purpose                       |
+    |----------------|-------------------------------|-------------------------------|
+    | SSH            | Linux / Unix                   | Secure remote command access  |
+    | Telnet         | Linux / Unix (old systems)     | Remote access (not secure)    |
+    | RSH            | Unix                           | Remote shell (deprecated)     |
+    | XDMCP          | Linux                          | Remote graphical login        |
+    | RDP            | Windows                        | Remote Desktop access         |
+    | VNC            | Linux / Windows                | Remote GUI access             |
+    | FTP            | Linux / Windows                | File transfer (not secure)    |
+    | SFTP           | Linux / Unix                   | Secure file transfer (SSH)    |
+    | Serial         | Network devices / Embedded VM  | Console access                |
+    | File           | Local / Remote systems         | File browsing                 |
+    | Shell          | Linux / Unix                   | Command-line access           |
+    | Browser        | Any OS                         | Web-based access              |
+    | Mosh           | Linux / Unix                   | Mobile SSH (unstable networks)|
+    | AWS S3         | Cloud Storage (AWS)            | Access S3 buckets             |
+    | WSL            | Linux on Windows               | Run Linux inside Windows      |
+    |----------------|-------------------------------|--------------------------------|
+
+Step3:
+    Select SSH --> Remote host:[public ip] specify username[default username[ec2-user]]
+Step4:
+    Click on Advanced SSH settings --> click on Use private Key --> Select keypair before we downloarded
+    --> Ok 
+Step5:
+    Now we can use linux virtul machine in our local computer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
