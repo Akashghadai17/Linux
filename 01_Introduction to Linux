@@ -1,0 +1,226 @@
+Contents
+--------
+-What is software
+-Types of software
+-Operating system and types of operating system
+-What is Linux
+-Linux Features
+-Linux Architecture
+-Linux distributions 
+
+Software
+--------
+-It is collections of programs.
+
+Types of Software
+-----------------
+1)System Software
+2)Application software
+
+1)System Software
+---------------
+-It interacts with hardware components.
+-Example:- Operating System(Windows, Linux, macOs, Android), 
+           Device Drivers(Printer driver, Keyboard driver, Mouse driver)
+
+2)Application software
+----------------------
+-It is given to perform specific task.
+-Example:- MS Word, MS Excel, MS PowerPoint.
+
+Operating System
+----------------
+-It is an interface between application software and hardware.
+-It runs application software.
+
+Types of Operating System
+-------------------------
+
+1)Character User Interface (CUI)
+--------------------------------
+-User must type commands for every operation.
+-Examples:MS-DOS, Linux, Unix, Solaris
+
+  Types of CUI(Character User Interface)
+  --------------------------------------
+  
+  a) Single User OS
+  ----------------
+  -Only one user can access the OS at a time.
+  -Example:MS-DOS  
+  
+  b) Multi User OS
+  ----------------
+  -Multiple users can access the OS simultaneously.
+  -Examples:Linux, Unix, Solaris
+
+2)Graphical User Interface (GUI)
+--------------------------------
+-No need to write commands.
+-Uses icons, menus, mouse.
+-Examples: Windows 95, Windows 8, Windows 10, Linux
+
+    Types of GUI(Graphical User Interface)
+    --------------------------------------
+    a) Single User OS
+    -----------------
+    -Only one user can access the OS at a time
+    -Example: Windows 95
+    
+    b)Multi User OS
+    ---------------
+    -Multiple users can access the OS simultaneously
+    -Examples: Windows 8, Windows 10, Linux
+
+Linux
+-----
+-Linux is a multi-user operating system.
+-Features of Linux
+-----------------
+-Multi User OS
+-Multi-Tasking
+-Free and Open Source
+-Security
+-Shell Scripting
+
+Linux Architecture
+------------------
+           user/application 
+|----------------------------------|
+|              Shell               |
+|   |--------------------------|   |
+|   |          Kernel          |   |
+|   |    |----------------|    |   |
+|   |    |    Hardware    |    |   |
+|   |    |----------------|    |   |
+|   |--------------------------|   |
+|----------------------------------|
+
+Shell
+-----
+-It is an interface between user/application and kernel.
+-It takes command from user, It interprets the command, then passes to the kernel.
+
+Kernel
+------
+-It is core component of OS.
+-It interacts with hardware.
+-It is used to execute command.   
+-Kernel contains 2 layers                                                                                                                                                                                                                                            
+    1)Device Driver                                                                                                                                                                        
+         -It interacts with hardware component.
+    2)Libraries
+         -It interacts with application software.
+
+Linux Distributions
+-------------------
+-Ubuntu
+-Red Hat Enterprise Linux
+-Fedora
+-Debian
+-Centos
+
+Linux Vs Windows
+----------------
+
+|----------------------|------------------|------------------|
+| Feature              | Linux            | Windows          |
+|----------------------|------------------|------------------|
+| Source Code          | Open Source      | Proprietary      |
+| Cost                 | Free             | Paid             |
+| Software Installation| Package Manager  | Executable Files |
+| Security             | More Secure      | Less Secure      |
+|----------------------|------------------|------------------|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
