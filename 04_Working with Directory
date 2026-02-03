@@ -1,0 +1,103 @@
+Command, Option and Argument:
+-----------------------------
+Command:
+--------
+-A command is used to perform a specific task in the operating system.
+-Example:
+    ls
+-(ls is a command used to list files and directories)
+
+Option:
+------
+-An option modifies or changes the behavior of a command.
+-Options usually start with - or --.
+Example:
+    ls -l
+-(-l is an option that shows files in long format
+
+Argument:
+--------
+-An argument is the actual data (file or directory name) on which the command works.
+Example:
+ls -l Documents
+      ls → Command
+      -l → Option
+      Documents → Argument
+
+Echo Command:
+------------
+Definition -echo command is used to print text or messages in the terminal.
+Example:
+[ec2-user@ip-172-31-16-42 ~]$ echo "My name is Akash"
+My name is Akash
+[ec2-user@ip-172-31-16-42 ~]$
+
+-n Option (No New Line)
+----------------------
+-By default, echo prints a line break.
+-n disables the line break.
+Example:
+[ec2-user@ip-172-31-16-42 ~]$ echo -n "My name is Akash"
+My name is Akash[ec2-user@ip-172-31-16-42 ~]$
+
+-e Option (Enable Escape Sequences)
+----------------------------------
+-Enables backslash escape characters like \n, \t.
+Example:
+
+[ec2-user@ip-172-31-16-42 ~]$ echo -e "My \nName\tAkash"
+My
+Name    Akash
+[ec2-user@ip-172-31-16-42 ~]$
+
+Combining Options:
+-----------------
+-Multiple options can be used together.
+Example:
+[ec2-user@ip-172-31-16-42 ~]$ echo -n -e "My \Name\t Akash"
+My \Name         Akash[ec2-user@ip-172-31-16-42 ~]$
+
+                 OR
+
+[ec2-user@ip-172-31-16-42 ~]$ echo -ne "My \nName\tAkash"
+My
+Name    Akash[ec2-user@ip-172-31-16-42 ~]$
+
+PWD Command
+-----------
+Definition(pwd stands for Print Working Directory.)
+-Displays the current directory path.
+[ec2-user@ip-172-31-16-42 ~]$ pwd
+/home/ec2-user
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
