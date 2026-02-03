@@ -1,0 +1,67 @@
+Different Ways to Access Linux
+------------------------------
+
+Local Login:
+----------
+-Direct access to the Linux system using keyboard and monitor.
+Remote Login:
+-------------
+-Access Linux from another system over a network.
+  Common tools:
+  ------------
+  SSH
+  Telnet (not secure)
+  VNC
+
+Root in Linux
+-------------
+
+Root Account:
+-------------
+-Root is a superuser account in Linux.
+-It has all administrative privileges.
+Can:
+    Install software
+    Modify system files
+    Create and delete users
+
+Root Directory:
+---------------
+-Root directory is the top-most directory in Linux.
+-Represented by:
+  /
+-All other directories are located under the root directory.
+
+Root Home Directory:
+--------------------
+-Home directory of the root user.
+-Represented by:
+  /root
+-Different from normal users’ home directories (/home/username).
+
+Quick Comparison:
+----------------
+|--------------------|--------------------------|
+| Term               | Description              |
+|--------------------|--------------------------|
+| Root Account       | Superuser with all rights|
+| Root Directory     | / (top-most directory)   |
+| Root Home Directory| /root                    |
+|--------------------|--------------------------|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
