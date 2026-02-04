@@ -13,6 +13,11 @@ Remote Login:
   Telnet (not secure)
   VNC
 
+Types of users
+--------------
+      Root user- /root
+      Normal user- /home/username
+
 Root in Linux
 -------------
 
