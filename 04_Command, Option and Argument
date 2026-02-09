@@ -24,51 +24,7 @@ ls -l Documents
       -l → Option
       Documents → Argument
 
-Echo Command:
-------------
-Definition -echo command is used to print text or messages in the terminal.
-Example:
-[ec2-user@ip-172-31-16-42 ~]$ echo "My name is Akash"
-My name is Akash
-[ec2-user@ip-172-31-16-42 ~]$
 
--n Option (No New Line)
-----------------------
--By default, echo prints a line break.
--n disables the line break.
-Example:
-[ec2-user@ip-172-31-16-42 ~]$ echo -n "My name is Akash"
-My name is Akash[ec2-user@ip-172-31-16-42 ~]$
-
--e Option (Enable Escape Sequences)
-----------------------------------
--Enables backslash escape characters like \n, \t.
-Example:
-
-[ec2-user@ip-172-31-16-42 ~]$ echo -e "My \nName\tAkash"
-My
-Name    Akash
-[ec2-user@ip-172-31-16-42 ~]$
-
-Combining Options:
------------------
--Multiple options can be used together.
-Example:
-[ec2-user@ip-172-31-16-42 ~]$ echo -n -e "My \Name\t Akash"
-My \Name         Akash[ec2-user@ip-172-31-16-42 ~]$
-
-                 OR
-
-[ec2-user@ip-172-31-16-42 ~]$ echo -ne "My \nName\tAkash"
-My
-Name    Akash[ec2-user@ip-172-31-16-42 ~]$
-
-PWD Command
------------
-Definition(pwd stands for Print Working Directory.)
--Displays the current directory path.
-[ec2-user@ip-172-31-16-42 ~]$ pwd
-/home/ec2-user
 
 
 
