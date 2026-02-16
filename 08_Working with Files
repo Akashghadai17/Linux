@@ -1,0 +1,245 @@
+Creation of Files 
+------------------
+By using touch command 
+By using cat command with redirection 
+By using echo command with redirection 
+By using editors like vi, gedit, nano etc 
+
+By using touch command
+----------------------
+-Touch command is used to create empty file. 
+-Syntax: 
+    touch filename 
+-If the file is already then the content of the file won't be changed. 
+ But last modified date and time will be updated. 
+
+[ec2-user@ip-172-31-16-42 ~]$ touch data1.txt
+[ec2-user@ip-172-31-16-42 ~]$ touch data1.txt
+[ec2-user@ip-172-31-16-42 ~]$ ls -l
+total 0
+drwxr-xr-x. 2 ec2-user ec2-user 6 Feb 15 11:47 aws
+drwxr-xr-x. 2 ec2-user ec2-user 6 Feb  4 13:38 c1
+-rw-r--r--. 1 ec2-user ec2-user 0 Feb 15 12:37 data1.txt
+drwxr-xr-x. 2 ec2-user ec2-user 6 Feb 15 11:47 python
+[ec2-user@ip-172-31-16-42 ~]$
+
+By using cat command with redirection 
+-------------------------------------
+-Syntax: 
+    cat > filename 
+- > (Direction operator)
+-If file is not available, then file will be created with our provided data. 
+-If file is already available with some content, then old data will be over written with 
+ provided new data. 
+-Instead of overwriting, if we want append operation then we should use >> with cat 
+Syntax: 
+cat >> filename 
+
+example
+-------
+-creating file with add containt and (ctrl + c) for save.
+
+[ec2-user@ip-172-31-16-42 ~]$ cat > data.txt
+Hello my name is akash
+linux
+^C
+[ec2-user@ip-172-31-16-42 ~]$ ^C
+[ec2-user@ip-172-31-16-42 ~]$
+
+-Showing conatints(cat filename.txt)
+
+[ec2-user@ip-172-31-16-42 ~]$ cat data.txt
+Hello my name is akash
+linux
+[ec2-user@ip-172-31-16-42 ~]$
+
+-Overwrite
+
+[ec2-user@ip-172-31-16-42 ~]$ cat > data.txt
+Akash Ghadai
+^C
+[ec2-user@ip-172-31-16-42 ~]$ cat data.txt
+Akash Ghadai
+[ec2-user@ip-172-31-16-42 ~]$
+
+-Append
+
+[ec2-user@ip-172-31-16-42 ~]$ cat >> data.txt
+Guddu
+Akash
+^C
+[ec2-user@ip-172-31-16-42 ~]$ cat data.txt
+Akash Ghadai
+Guddu
+Akash
+[ec2-user@ip-172-31-16-42 ~]$ ^C
+
+
+By using echo command with redirection 
+--------------------------------------
+Syntax: 
+echo “content” > filename 
+If file is not available, then file will be created with our provided data. 
+If file is already available with some content, then old data will be over written with 
+provided new data. 
+Instead of overwriting, if we want append operation then we should use >> with cat 
+Syntax: 
+echo “content” >> filename 
+
+Example
+------
+-Creating file with data
+[ec2-user@ip-172-31-16-42 ~]$ echo "Akash Ghadai" > data1.txt
+[ec2-user@ip-172-31-16-42 ~]$
+
+
+-Overwrite
+[ec2-user@ip-172-31-16-42 ~]$ echo "Akash" > data1.txt
+[ec2-user@ip-172-31-16-42 ~]$
+
+-Append
+[ec2-user@ip-172-31-16-42 ~]$ echo "Guddu" >> data1.txt
+[ec2-user@ip-172-31-16-42 ~]$
+
+-showing containt
+[ec2-user@ip-172-31-16-42 ~]$ cat data.txt
+Akash Ghadai
+Guddu
+Akash
+[ec2-user@ip-172-31-16-42 ~]$
+
+By using Editors
+----------------
+vi file name
+We will get command mode by default.
+If we want to switch from command mode to insert mode then press “i”.
+If we want to switch from insert mode to command mode then press “esc”.
+:wq – save and quit
+:q! – quit without saving
+
+Display the contents of the file
+—-----------------------------------------
+i)cat
+ii)head
+iii)tail
+iv)less
+v)more
+
+i)cat
+-----
+--display content of the file 
+  cat filename 
+
+  [ec2-user@ip-172-31-16-42 ~]$ cat data3.txt
+  Akash Ghadai
+  Guddu
+  a
+  b
+  c
+  d
+  e
+  f
+  g
+  h
+  i
+
+
+
+--display file content with line number 
+  cat –n filename
+
+[ec2-user@ip-172-31-16-42 ~]$ cat -n data3.txt
+     1  Akash Ghadai
+     2  Guddu
+     3  a
+     4  b
+     5  c
+     6  d
+     7  e
+     8  f
+     9  g
+    10  h
+    11  i
+    12
+
+--Copy content of one file to another file 
+  cat input.txt > output.txt
+
+[ec2-user@ip-172-31-16-42 ~]$ cat > data11.txt
+Akash
+^C
+[ec2-user@ip-172-31-16-42 ~]$ cat data11.txt > data12.txt
+[ec2-user@ip-172-31-16-42 ~]$ cat data12.txt
+Akash
+
+--append some extra data to existing file 
+  cat >> filename 
+
+[ec2-user@ip-172-31-16-42 ~]$ cat >> data11.txt
+Guddu
+^C
+[ec2-user@ip-172-31-16-42 ~]$ cat data12.txt >> data11.txt
+[ec2-user@ip-172-31-16-42 ~]$ cat data11.txt
+Akash
+Guddu
+Akash
+[ec2-user@ip-172-31-16-42 ~]$
+
+--copy content of multiple files to a single file 
+  cat file1.txt file2.txt file3.txt > file4.txt
+
+ii)head
+--------
+-We can use head command to view top few lines of content. 
+ head file1.txt 
+-It will display top 10 lines of file1.txt. 
+-10 is the default value of number of lines. 
+ head -n 30 file1.txt
+
+iii)tail
+--------
+-We can use tail command to view few lines from bottom of the file. 
+ tail file1.txt 
+-Last 10 lines will be displayed. 
+ tail -n 30 file1.txt 
+-It will display last 30 lines. 
+
+iv)more
+-------
+We can use more command to view file content page by page. 
+more file1.txt 
+It will display first page. 
+Enter -> To view next line 
+Space Bar -> To view next page 
+q -> To quit/exit 
+d -> To go to next page.(d means down) 
+b -> To go to previous page. (b means backward)
+
+v)less
+-----
+We can use more command to view file content page by page. 
+less file.txt 
+d -> To go to next page.(d means down) 
+b -> To go to previous page. (b means backward) 
+We can search for text within the file we are viewing by using the forward slash / 
+followed by the search term.
+
+ man cat
+—------------
+Show all cat commend list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
