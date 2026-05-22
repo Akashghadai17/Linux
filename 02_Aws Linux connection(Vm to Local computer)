@@ -24,6 +24,20 @@ Step6:
 Step7:
      It show Details --> Copy pubic ip
 
+Ec2 server cteated
+------------------
+default user name- ec2-user
+keypair downloard
+public ip of my ec2 instance- 54.82.93.137
+Connect with linux machine use protocol : SSH[22] 22 is port number.
+
+connecting to local computer 
+----------------------------
+Software -MobaXterm
+
+
+
+
 Connecting VM to local computer MobaXterm
 -----------------------------------------
 Step1:
@@ -52,7 +66,8 @@ Step2:
     |----------------|-------------------------------|--------------------------------|
 
 Step3:
-    Select SSH --> Remote host:[public ip] specify username[default username[ec2-user]]
+    Select SSH -->  Remote host:[public ip]eg[3.224.147.5] 
+                    specify username[default username] to ec2-user #Default user name
 Step4:
     Click on Advanced SSH settings --> click on Use private Key --> Select keypair before we downloarded
     --> Ok 
