@@ -1,13 +1,16 @@
 Types of files
 --------------
 -In Linux everything is treated as file. 
--We have 2 types of files in Linux: 
-    Normal or Ordinary Files 
-    Directory Files 
+Type of file
+------------
+1)Normal file     :Windows-file linux-Normal File
+2)Directory file  :Windows-Folder linux-Directory/Directory File
 Normal Files 
+----------------
 -These files contain data.  
 -It can be either text files (like abc.txt) OR binary files (like images, audio, videos etc). 
 Directory Files 
+----------------
 -These files represent directories. 
 -Directory can contain files and sub directories.
 
