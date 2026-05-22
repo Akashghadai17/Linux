@@ -1,3 +1,12 @@
+File
+---
+In linux everything is a file.
+Type of file
+------------
+1)Normal file     :Windows-file linux-Normal File
+2)Directory file  :Windows-Folder linux-Directory/Directory File
+
+
 Command, Option and Argument:
 -----------------------------
 Command:
