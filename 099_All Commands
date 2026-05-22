@@ -71,4 +71,61 @@ Name    Akash[ec2-user@ip-172-31-16-42 ~]$
 [ec2-user@ip-172-31-16-42 ~]$ pwd
 /home/ec2-user
 
+6)mkdir
+-------
+Creating Directory/Folder
+    [ec2-user@ip-172-31-16-42 ~]$ mkdir linux
+    [ec2-user@ip-172-31-16-42 ~]$ mkdir python
+    [ec2-user@ip-172-31-16-42 ~]$ mkdir mysql
+    [ec2-user@ip-172-31-16-42 ~]$ ls
+    linux  mysql  python
+    [ec2-user@ip-172-31-16-42 ~]$
+
+7)touch
+--------
+Creating file.
+    -Using touch
+    Example:
+    [ec2-user@ip-172-31-16-42 ~]$ touch dat1.txt
+    [ec2-user@ip-172-31-16-42 ~]$ touch data2.txt
+    [ec2-user@ip-172-31-16-42 ~]$ ls
+    dat1.txt  data2.txt  linux  mysql  python
+    [ec2-user@ip-172-31-16-42 ~]$
+
+8)ls / ls -l
+------------
+ls         ->List of file and directory.
+ls -l      ->For showing all details which is folder and file.
+Using ls -l
+    [ec2-user@ip-172-31-16-42 ~]$ ls -l
+    total 0
+    -rw-r--r--. 1 ec2-user ec2-user 0 Feb  3 15:39 dat1.txt
+    -rw-r--r--. 1 ec2-user ec2-user 0 Feb  3 15:39 data2.txt
+    drwxr-xr-x. 2 ec2-user ec2-user 6 Feb  3 15:36 linux
+    drwxr-xr-x. 2 ec2-user ec2-user 6 Feb  3 15:37 mysql
+    drwxr-xr-x. 2 ec2-user ec2-user 6 Feb  3 15:36 python
+    [ec2-user@ip-172-31-16-42 ~]$
+
+    How to know which file and folder:
+    - means file
+    d means directory
+
+9)clear
+-------
+- Clear Screen.
+[ec2-user@ip-172-31-16-42 ~]$ clear
+
+10)file
+-------
+-file command determines the type of a file.
+-In Linux file extension is not important. Linux can identify file type based on our content. 
+Syntax:
+      file <file_name>
+Example:
+      [ec2-user@ip-172-31-16-42 ~]$ file data2.txt
+      data2.txt: empty
+      [ec2-user@ip-172-31-16-42 ~]$
+
+
+
 
