@@ -6,7 +6,7 @@ Different ways to create directory
 -Create multiple directory 
       mkdir dir1 dir2 dir3
 
--Create dir3 if dir2 and dir2 are available 
+-Create dir3 if dir2 and dir1 are available 
       mkdir dir1/dir2/dir3 
 
 The -p option in the mkdir command stands for "parents."
@@ -15,6 +15,13 @@ The -p option in the mkdir command stands for "parents."
 - mkdir -p dir1/dir2/dir3 
 [ec2-user@ip-172-31-16-42 ~]$ mkdir -p div1/div2/div3/div4/div5/div6
 [ec2-user@ip-172-31-16-42 ~]$ tree
+- First time use tree it show command not found.Installation required
+- Use packege maneger for installing the tree. Packege manager = yum
+- But installation how do? -> Root user so use- sudo
+[ec2-user@ip-172-31-1-83 ~]$ sudo yum install tree
+
+[ec2-user@ip-172-31-16-42 ~]$ tree
+
 ├── div1
 │   └── div2
 │       └── div3
@@ -80,13 +87,27 @@ Example3
 │   ├── a4
 │   └── a5
 
-[ec2-user@ip-172-31-16-42 ~]$ mkdir -p {dirr1,dirr2}/a{1..5}
+Approch-1
+----------
+mkdir -p dir1/a{1..5}
+mkdir -p dir2/a{1..5}
+
+Approch-2 
+---------
+mkdir -p dir1/a{1..5} dir2/a{1..5}
+
+Approch-3
+----------
+mkdir -p dir{1..2}/a{1..5}
+
+Approch-4
+---------
+mkdir -p {dirr1,dirr2}/a{1..5}
 
 Example#4
 What will be the outcomes following Command? 
 mkdir {a..c}/{1..3}
-
-And- ERROR NO DIRECTORY 
+Ans- ERROR NO DIRECTORY , -p requried.
 
 ├── x
 │   ├── x1
@@ -109,7 +130,11 @@ Approach2
 
 Remove Directory:
 -----------------
--rmdir
+1)rmdir
+2)rm
+
+-rmdir is use to delete only empty directory.
+-rm is use to delete non empty directory.
 
 -To remove empty directory dir1
     rmdir dir1 
@@ -122,7 +147,7 @@ Note
 -rmdir command will work only for empty directories. If the directory is not empty then we will get error.
 
 rm 
-
+---
 -rm command is used to delete folder and files. 
 -Whenever we are using rm command for directories, we should use -r or -R option. Here 
 -case is not important.
