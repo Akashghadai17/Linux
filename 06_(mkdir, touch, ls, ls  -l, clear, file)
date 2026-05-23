@@ -28,6 +28,7 @@ Creating Directory/Folder
 Creating file
 -------------
     -Using touch
+    -Create empty file.
     Example:
     [ec2-user@ip-172-31-16-42 ~]$ touch dat1.txt
     [ec2-user@ip-172-31-16-42 ~]$ touch data2.txt
@@ -47,7 +48,8 @@ For showing all details which is folder and file.
     drwxr-xr-x. 2 ec2-user ec2-user 6 Feb  3 15:36 python
     [ec2-user@ip-172-31-16-42 ~]$
     
-    How to know which file and folder:
+How to know which file and folder:
+----------------------------------------
     - means file
     d means directory
 
@@ -57,7 +59,7 @@ Clear screen:
 
 File Type Command:
 ------------------
--file command determines the type of a file.
+-file command determines the type of a file.(text/image....)
 -In Linux file extension is not important. Linux can identify file type based on our content. 
 Syntax:
       file <file_name>
