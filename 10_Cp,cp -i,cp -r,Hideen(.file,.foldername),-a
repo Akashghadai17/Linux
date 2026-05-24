@@ -1,0 +1,62 @@
+Copy Commands (For file)
+-----------------------
+        /home/ec2-user
+        /        \
+  data1.txt    data2.txt
+   xysjhjha      Empty
+   ddkskdsjd 
+
+  -If you want to copy the data of data1.txt and store in data2.txt
+  -Use cp source_file Destination_file
+  -eg. cp data1.txt data2.txt
+
+  -If you have not data3,txt file then it will automatically create file and store data.
+
+  Overwrite
+  ---------
+  $cat data1.txt
+  abcggss
+  $cat data4.txt
+  dshsahahal
+
+  $cp data1.txt data4.txt
+  -->Over writ the containts
+
+  -You can use i for permission
+  $ cp -i data1.txt data4.txt
+  y
+  -Done
+
+  Copy Commands (For folder)
+----------------------------
+data1.txt
+data2.txt  
+
+-I want to store 2 files into mysql directory how to do?
+
+$cp data1.txt data2.txt mysql
+$ls mysql/
+data1.txt data2.txt
+
+- In case of directory not present it will show error but in file it create automatically.
+
+Q-I want to mysql(data1.txt, data2.txt) copy linux folder
+$cp mysql/* linux
+
+Q- If you want Mysql folder copy to linux 
+$cp -r mysql backup/
+
+
+Hidden file / folder
+--------------------
+- Before name add '.'
+$touch .data1.txt
+$mkdir .mysql
+$ls
+no files and no directories
+
+-If you want to see the hidden file/folder use -a
+$ls -a
+.data1.txt .mysql
+
+  
