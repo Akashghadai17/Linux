@@ -1,0 +1,71 @@
+Navigation
+----------
+- How to change one location to another.
+command= cd (Change directory)
+
+-In linux everythings start with?
+- / (Root)
+-Inside romm we have /home /root /var
+_ inside home where each and each user have folder 
+       /home 
+      /      \
+ec2-user  user1
+
+-Now we have ec2-user in future if we need anather user we create it eg. user1
+
+Questions(I want to /home/ec2-user to Linux folder)
+                                    /
+            _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+            |                        |                    |
+          /home                    /root                 /var
+    _______________________________
+    |                              |
+      ec2-user                    user1
+  /                \
+ Data_Engineering  data_Science
+    /        \
+ MySQl      Linux
+/     \
+join subquery 
+
+Approach-1 -(Start from current location) - This is called relative path.
+--------
+cd Data_Engineering/Linux
+
+Approach-2 (Start from root)- This is called absolute path  
+----------
+cd /home/ec2-user/Data_Engineering/Linux
+
+Q-If you want to chage location from any to ec2-user use-
+  cd or cd~/ or cd $HOME (go to home from any location)
+
+Q-If you want to Linux to Data_Engineering. Means go child to parance folder.
+  cd.. or cd /home/ec2-user/Data_Engineering
+  so cd.. is better
+
+Q-If you want to Data_Engineering to /home
+  cd../..  means(cd.. = ec2-user and again .. = /home)
+
+Q-If you want to previous path .
+  eg-  cd /home/ec2-user/Data_Engineering/Linux
+- Now go to direct /home -previous
+ use - cd-
+
+Q- you are in /home now go to /var
+Approach-1     -Relative
+-------------
+cd ../var
+
+Approach-2 -Absolute
+-----------
+cd /var
+
+-To changing path ither use Relative or Absolute.
+
+
+
+
+
+
+
+
