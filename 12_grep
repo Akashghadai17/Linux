@@ -1,0 +1,209 @@
+grep command
+-------------
+-Search content in a single file or multiple files.
+  GREP=(Global Regular Expression Print)
+syntax- grep filename whatToSearch
+
+Example
+---------
+Create a file with add content
+[ec2-user@ip-172-31-1-83 ~]$ vi data1.txt
+linux is a easy language.
+linux is a os.
+python is a programming language.
+mysql is database sw.
+
+[ec2-user@ip-172-31-1-83 ~]$
+[ec2-user@ip-172-31-1-83 ~]$ grep "linux" data1.txt
+linux is a easy language.
+linux is a os.
+[ec2-user@ip-172-31-1-83 ~]$
+
+-It find all lines have 'linux' word.
+
+Grep also use in multiple directories
+-------------------------------------
+-create and copy the data of data1.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data1.txt > data2.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data1.txt > data3.txt
+
+grep chek all the files 'python' word.
+[ec2-user@ip-172-31-1-83 ~]$ grep "python" data1.txt data2.txt data3.txt
+data1.txt:python is a programming language.
+data2.txt:python is a programming language.
+data3.txt:python is a programming language.
+[ec2-user@ip-172-31-1-83 ~]$
+
+Search using *.txt 
+------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep 'python' *.txt
+data1.txt:python is a programming language.
+data2.txt:python is a programming language.
+data3.txt:python is a programming language.
+[ec2-user@ip-172-31-1-83 ~]$
+
+Search 'python' any file use *
+-------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep 'python' *
+data1.txt:python is a programming language.
+data2.txt:python is a programming language.
+data3.txt:python is a programming language.
+data4.doc:python is a programming language.
+[ec2-user@ip-172-31-1-83 ~]$
+
+grep is a case sensitive-means(linux and Linux is diffrent)
+-----------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cat > data4.txt
+linux is a os.
+Linux is secure os.
+^C
+[ec2-user@ip-172-31-1-83 ~]$ grep 'linux' data4.txt
+linux is a os.
+[ec2-user@ip-172-31-1-83 ~]$ grep 'Linux' data4.txt
+Linux is secure os.
+[ec2-user@ip-172-31-1-83 ~]$
+
+I want to case insensitive(-i)
+--------------------------
+grep -i linux data4.txt
+- -i (for case insensitive)
+- linux (word for search)
+
+[ec2-user@ip-172-31-1-83 ~]$ grep -i linux data4.txt
+linux is a os.
+Linux is secure os.
+[ec2-user@ip-172-31-1-83 ~]$
+
+           OR(use linux/'linux'=same)
+[ec2-user@ip-172-31-1-83 ~]$ grep -i 'linux' data4.txt
+linux is a os.
+Linux is secure os.
+[ec2-user@ip-172-31-1-83 ~]$
+
+Counts the number of lines containing "linux" in each .txt file.(-c)
+--------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -c linux *.txt
+data1.txt:2
+data2.txt:2
+data3.txt:2
+data4.txt:1
+[ec2-user@ip-172-31-1-83 ~]$
+
+Displays matching lines with their line numbers(-n)
+---------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -n linux data1.txt
+1:linux is a easy language.
+2:linux is a os.
+[ec2-user@ip-172-31-1-83 ~]$
+
+Displays lines that do not contain "lunux"(-v)
+----------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -v linux data1.txt
+python is a programming language.
+mysql is database sw.
+
+Displays the names of files containing "linux"(-I)
+--------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -I linux data1.txt
+linux is a easy language.
+linux is a os.
+
+Search exact word(-w)
+----------------------
+[ec2-user@ip-172-31-1-83 ~]$ cat > data5.txt
+python programming
+python program
+^C
+[ec2-user@ip-172-31-1-83 ~]$ grep program data5.txt
+python programming
+python program
+[ec2-user@ip-172-31-1-83 ~]$ ^C
+[ec2-user@ip-172-31-1-83 ~]$
+
+-See it show programming and program word but we need exact word use -w.
+[ec2-user@ip-172-31-1-83 ~]$ grep -w program data5.txt
+python program
+[ec2-user@ip-172-31-1-83 ~]$
+
+Searches for the exact word "linux" (case-insensitive) in each .txt file(-iw)
+-----------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -iw linux data4.txt
+linux is a os.
+Linux is secure os.
+
+Displays matching lines and 2 lines after each match.(-A 2)
+-----------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cat > data6.txt
+a
+s
+d
+w
+
+s
+
+d
+s
+s
+w
+linux
+d
+f
+g
+h
+u
+w
+e
+w
+q
+^C
+[ec2-user@ip-172-31-1-83 ~]$
+
+-A 2 linux(You can use 4 , 5 .... insed of 2)
+-----------
+[ec2-user@ip-172-31-1-83 ~]$ grep -A 2 linux data6.txt
+linux
+d
+f
+[ec2-user@ip-172-31-1-83 ~]$
+
+Displays matching lines and 2 lines before each match.(-B 2 )
+-------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -B 2 linux data6.txt
+s
+w
+linux
+
+Displays matching lines and 2 lines before and after each match.(-C 2)
+------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -C 2 linux data6.txt
+s
+w
+linux
+d
+f
+
+Searches for lines containing either "python" or "linux".(grep -e "python" -e "linux" data.txt 
+----------------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ grep -e 'python' -e 'linux' data1.txt
+linux is a easy language.
+linux is a os.
+python is a programming language.
+
+   OR(grep -e 'python' -e 'linux' data1.txt/egrep -i "(python|linux)" data.txt
+
+[ec2-user@ip-172-31-1-83 ~]$ egrep -i "(python|linux)" data1.txt
+linux is a easy language.
+linux is a os.
+python is a programming language.
+
+
+
+
+
+
+
+
+
+
+
+-
