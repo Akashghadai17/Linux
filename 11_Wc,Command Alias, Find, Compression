@@ -1,0 +1,620 @@
+Wc command-wc data.txt
+----------
+- Give number of word,character in a given file.
+[ec2-user@ip-172-31-1-83 ~]$ wc data.txt
+ 73  53 134 data.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+[ec2-user@ip-172-31-1-83 ~]$ alias rm=" rm -ri"
+[ec2-user@ip-172-31-1-83 ~]$ rm data.txt
+rm: remove regular file 'data.txt'?
+
+
+
+Specific- wc -l data.txt,wc -c data.txt,wc -w data.txt,wc -lw data.txt
+---------
+[ec2-user@ip-172-31-1-83 ~]$ wc -l data.txt
+73 data.txt
+[ec2-user@ip-172-31-1-83 ~]$ wc -c data.txt
+134 data.txt
+[ec2-user@ip-172-31-1-83 ~]$ wc -w data.txt
+53 data.txt
+[ec2-user@ip-172-31-1-83 ~]$ wc -lw data.txt
+ 73  53 data.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+
+73(line)  53(Word) 134(character) data.txt (file name)
+
+Command alias- alias cls="clear"
+-------------
+alias=alternative name
+easy access
+
+[ec2-user@ip-172-31-1-83 ~]$ alias cls="clear"
+
+Using alias command- alias c1="wc -l data.txt", .bashrc
+--------------------
+[ec2-user@ip-172-31-1-83 ~]$ alias c1="wc -l data.txt"
+[ec2-user@ip-172-31-1-83 ~]$ c1
+73 data.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+-But this is temporary works.
+-For permanent 
+  .bashrc -store the command then it becomes to permanent.
+
+[ec2-user@ip-172-31-1-83 ~]$ ls -a
+.  ..  .bash_history  .bash_logout  .bash_profile  .bashrc  .lesshst  .ssh  .viminfo  Mysql
+
+[ec2-user@ip-172-31-1-83 ~]$vi .bashrc
+
+inser this command ans wq
+
+alias cls="clear"
+
+-Restart the server login check cls it works.
+
+find command
+------------
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Mysql
+├── linux
+│   ├── directoryop.txt
+│   └── fileop.txt
+└── mysql
+    ├── join.txt
+    ├── operator.txt
+    └── subquery.txt
+
+  List all the files using find
+  -----------------------------
+[ec2-user@ip-172-31-1-83 ~]$ find
+.
+./.bash_logout
+./.bash_profile
+./.ssh
+./.ssh/authorized_keys
+./.bash_history
+./Mysql
+./.lesshst
+./.bashrc
+./.viminfo
+./.bashrc.swp
+./linux
+./linux/directoryop.txt
+./linux/fileop.txt
+./mysql
+./mysql/join.txt
+./mysql/operator.txt
+./mysql/subquery.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+Q.find all files of mysql
+-------------------------
+[ec2-user@ip-172-31-1-83 ~]$ find mysql
+mysql
+mysql/join.txt
+mysql/operator.txt
+mysql/subquery.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+-If you want to find file/folder use find command.
+
+maxdepth
+--------
+-find for a specific depth use -maxdepth
+[ec2-user@ip-172-31-1-83 ~]$ find mysql -maxdepth 1
+mysql
+mysql/join.txt
+mysql/operator.txt
+mysql/subquery.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+For only file/folder use -type
+------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ find -type f
+./.bash_logout
+./.bash_profile
+./.ssh/authorized_keys
+./.bash_history
+./.lesshst
+./.bashrc
+./.viminfo
+./.bashrc.swp
+[ec2-user@ip-172-31-1-83 ~]$
+
+for onlu file
+-------------
+[ec2-user@ip-172-31-1-83 ~]$ find mysql -type f
+mysql/group.txt
+mysql/select.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+for onlu directory
+------------------
+[ec2-user@ip-172-31-1-83 ~]$ find linux -type d
+linux
+linux/directoryop.txt
+linux/fileop.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+for a specific file
+-------------------
+[ec2-user@ip-172-31-1-83 ~]$ find -name fileop.txt
+./linux/fileop.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+Find out files more the a specific size
+--------------------------------------
+Q.Find in etc file 200kb + files
+
+[ec2-user@ip-172-31-1-83 ~]$ find /etc -type f -size +200k
+/etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+/etc/pki/ca-trust/extracted/pem/objsign-ca-bundle.pem
+/etc/services
+/etc/selinux/targeted/contexts/files/file_contexts
+/etc/selinux/targeted/contexts/files/file_contexts.bin
+/etc/selinux/targeted/policy/policy.33
+find: ‘/etc/grub.d’: Permission denied
+/etc/ssh/moduli
+find: ‘/etc/ssh/sshd_config.d’: Permission denied
+/etc/udev/hwdb.bin
+find: ‘/etc/sssd’: Permission denied
+find: ‘/etc/sudoers.d’: Permission denied
+find: ‘/etc/audit’: Permission denied
+[ec2-user@ip-172-31-1-83 ~]$
+
+Q.In mysql delete all empty files
+
+-In mysql select.txt file has data
+[ec2-user@ip-172-31-1-83 ~]$ cat mysql/select.txt
+Select * from emp;
+[ec2-user@ip-172-31-1-83 ~]$
+
+[ec2-user@ip-172-31-1-83 ~]$ find mysql -type f -empty
+mysql/group.txt
+- See only group.txt file is empty
+
+Copy all empty files to a new folder
+------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ find mysql -type f -empty
+mysql/group.txt
+command
+-------
+[ec2-user@ip-172-31-1-83 ~]$ find mysql -type f -empty -exec cp {} linux-01 \;
+
+
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Mysql
+├── linux
+│   ├── directoryop.txt
+│   └── fileop.txt
+├── linux-01
+│   └── group.txt
+├── mysql
+│   ├── group.txt
+│   ├── join.txt
+│   ├── operator.txt
+│   ├── select.txt
+│   └── subquery.txt
+└── select.txt
+
+Q.copy all private.pem file renew with copy to cert directory
+[ec2-user@ip-172-31-1-83 ~]$ find -type d -name private.pem
+./app1/cert/private.pem
+./app2/cert/private.pem
+./app3/cert/private.pem
+[ec2-user@ip-172-31-1-83 ~]$
+
+Renew the files
+---------------
+[ec2-user@ip-172-31-1-83 ~]$ mv ./app1/cert/private.pem ./app1/cert/app1_private.pem
+[ec2-user@ip-172-31-1-83 ~]$ mv ./app2/cert/private.pem ./app2/cert/app2__private.pem
+[ec2-user@ip-172-31-1-83 ~]$ mv ./app3/cert/private.pem ./app3/cert/app3__private.pem
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── app1
+│   └── cert
+│       └── app1_private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+14 directories, 1 file
+[ec2-user@ip-172-31-1-83 ~]$
+
+All *.pem files copy to cert directory
+--------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ find -type d -name *.pem -exec cp -r {} cert \;
+cp: './cert/app1__private.pem' and 'cert/app1__private.pem' are the same file
+cp: './cert/app2__private.pem' and 'cert/app2__private.pem' are the same file
+cp: './cert/app3__private.pem' and 'cert/app3__private.pem' are the same file
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+│   ├── app1__private.pem
+│   ├── app2__private.pem
+│   └── app3__private.pem
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+Delete app .pem files
+--------------------
+
+[ec2-user@ip-172-31-1-83 ~]$ find -type f -name *.pem -exec rm {} \;
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+15 directories, 1 file
+[ec2-user@ip-172-31-1-83 ~]$
+
+NOTE
+-----
+[ec2-user@ip-172-31-1-83 ~]$ find -type f -name *.pem -exec rm {} \;
+find (a;; find data) store in {} 
+remember it.
+
+Compression(tar)
+----------
+example
+-------
+data1.txt
+data2.txt ---->Compress(less space,single file,quickly) --> send to new folder 
+data3.txt
+
+which command
+------------
+tar command
+
+eg- tar -cvf file_name *.txt
+- tar = commpression function -c=copy v=vorbose f=file filename=new fill for all compress file store *.txt=all txt files
+
+[ec2-user@ip-172-31-1-83 ~]$ mkdir Akash
+[ec2-user@ip-172-31-1-83 ~]$ touch Akash/a1.txt
+[ec2-user@ip-172-31-1-83 ~]$ touch Akash/a2.txt
+[ec2-user@ip-172-31-1-83 ~]$ touch Akash/a3.txt
+[ec2-user@ip-172-31-1-83 ~]$ vi a1.txt
+[ec2-user@ip-172-31-1-83 ~]$ vi a2.txt
+[ec2-user@ip-172-31-1-83 ~]$ cp a2.txt a3.txt
+[ec2-user@ip-172-31-1-83 ~]$ tar -cvf AkashGhadai Akash/*
+Akash/a1.txt
+Akash/a2.txt
+Akash/a3.txt
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+│   ├── a1.txt
+│   ├── a2.txt
+│   └── a3.txt
+├── AkashGhadai
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+Delete all files from Akash
+---------------------------
+[ec2-user@ip-172-31-1-83 ~]$ rm Akash/*
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+├── AkashGhadai
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+
+Extract contents of tar file(tar -xvf xyz.tar)
+----------------------------
+tar -xvf AkashGhadai.tar
+
+[ec2-user@ip-172-31-1-83 ~]$ tar -xvf AkashGhadai.tar
+Akash/a1.txt
+Akash/a2.txt
+Akash/a3.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+│   ├── a1.txt
+│   ├── a2.txt
+│   └── a3.txt
+├── AkashGhadai.tar
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+-See all the files are restore
+
+--So all this tar commpresion in linux use package 
+
+For commpress we have other technique
+--------------------------------------
+gZip data.tar
+gunzip data.tar
+
+how to do it
+---------------
+tar file to gzip file
+----------------------
+-it will change to AkashGhadai.tar.gr 
+[ec2-user@ip-172-31-1-83 ~]$ gzip AkashGhadai.tar
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+│   ├── a1.txt
+│   ├── a2.txt
+│   └── a3.txt
+├── AkashGhadai.tar.gz
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+See--rw-r--r--. 1 ec2-user ec2-user 163 May 26 18:36 AkashGhadai.tar.gz
+163 is size
+
+For unzip
+---------
+use- gunzip AkashGhadai.tar.gz
+[ec2-user@ip-172-31-1-83 ~]$ gunzip AkashGhadai.tar.gz
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+│   ├── a1.txt
+│   ├── a2.txt
+│   └── a3.txt
+├── AkashGhadai.tar
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+--see ├── AkashGhadai.tar (Unziped)
+
+See the size diffrence
+----------------------
+[ec2-user@ip-172-31-1-83 ~]$ ls -l
+
+-rw-r--r--. 1 ec2-user ec2-user 10240 May 26 18:36 AkashGhadai.tar
+-Before(163) After(10240)
+
+SHORTLY
+--------
+package
+  tar -cvf data.tar *
+compress
+  gzip data.tar ---> data.tar.gz
+unpackage
+  tar -xvf data.tar
+uncompress
+  gunzip data.tar.gz ---> data.tar
+
+Create tar File and compress in single command (package+zip = newcommand(cvzf)
+-------------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ tar cvzf AkashGhdai.tar Akash/*
+Akash/a1.txt
+Akash/a2.txt
+Akash/a3.txt
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+│   ├── a1.txt
+│   ├── a2.txt
+│   └── a3.txt
+├── AkashGhdai.tar
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+-See the size
+--------------
+[ec2-user@ip-172-31-1-83 ~]$ ls -l
+-rw-r--r--. 1 ec2-user ec2-user 147 May 26 19:06 AkashGhdai.tar
+see size is = 147
+
+Delete all the files from Akash/*
+----------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ rm Akash/*
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+├── AkashGhdai.tar
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+
+For unzip(-xvzf)
+----------------
+[ec2-user@ip-172-31-1-83 ~]$ tar -xvzf AkashGhdai.tar
+Akash/a1.txt
+Akash/a2.txt
+Akash/a3.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+tree
+----
+[ec2-user@ip-172-31-1-83 ~]$ tree
+.
+├── Akash
+│   ├── a1.txt
+│   ├── a2.txt
+│   └── a3.txt
+├── AkashGhdai.tar
+├── a1.txt
+├── a2.txt
+├── a3.txt
+├── app1
+│   └── cert
+│       └── app1__private.pem
+├── app2
+│   └── cert
+│       └── app2__private.pem
+├── app3
+│   └── cert
+│       └── app3__private.pem
+├── cert
+└── course
+    ├── linux
+    │   ├── command
+    │   └── cp.txt
+    └── mysql
+        └── querys
+
+16 directories, 8 files
+[ec2-user@ip-172-31-1-83 ~]$
+
+
+
+
