@@ -1,0 +1,232 @@
+Create New Group 
+-------------------
+  -addgroup command is used to create new group.
+  -sudo permission is required to execute addgroup command. 
+  -Sudo(Super user do)
+  -Root user(Sudo permision)
+  -ec2-user(Normal user with sudo permision).
+  -Example: 
+          sudo addgroup group1 
+Display Groups
+--------------
+  -By default group information have etc folder.
+  -/etc/group ->Inside this all group info are available.
+  Example
+  -------
+  [ec2-user@ip-172-31-1-83 ~]$ cat /etc/group
+  root:x:0:
+  bin:x:1:
+  daemon:x:2:
+  sys:x:3:
+  adm:x:4:ec2-user
+  tty:x:5:
+  disk:x:6:
+  lp:x:7:
+  mem:x:8:
+  .
+  .
+  .
+  .
+  
+  -Craeate a Ubuntu machine in Aws.
+  ubuntu@ip-172-31-15-180:~$ pwd
+  /home/ubuntu
+  ubuntu@ip-172-31-15-180:~$ addgroup group1
+  fatal: Only root may add a user or group to the system.  ->only root user have access
+  ubuntu@ip-172-31-15-180:~$
+
+  See the groups
+  ubuntu@ip-172-31-15-180:~$ cat /etc/group
+  root:x:0:
+  daemon:x:1:
+  bin:x:2:
+  sys:x:3:
+  adm:x:4:syslog,ubuntu
+  tty:x:5:
+  disk:x:6:
+  lp:x:7:
+  mail:x:8:
+  news:x:9:
+  uucp:x:10:
+  .
+  .
+  .
+  -Go throuth ubuntu exam/interview they will ask qus buesed on ubuntu.
+  How to create group
+  ------------------
+  ubuntu@ip-172-31-15-180:~$ sudo addgroup group1
+
+  How to create user
+  ------------------
+  -When ever create a user in linux bu default they will be inside some group.
+   if you not give group-name also by default inside some default group.
+   syntax:
+           adduser username
+           eg.- sudo adduser -ingroup groupname username
+  -If you create a user without group system will create a default group.
+  -Eg- sudo adduser username [new group,groupname=username]
+
+  Create user code
+  ----------------
+  ubuntu@ip-172-31-15-180:~$ sudo adduser --ingroup group1 user1
+  fatal: The user `user1' already exists.
+  ubuntu@ip-172-31-15-180:~$ sudo deluser user1
+  ubuntu@ip-172-31-15-180:~$ sudo adduser --ingroup group1 user1
+  warn: The home directory `/home/user1' already exists.  Not touching this directory.
+  New password:
+  Retype new password:
+  passwd: password updated successfully
+  Changing the user information for user1
+  Enter the new value, or press ENTER for the default
+          Full Name []:             ignone(Enter)
+          Room Number []:          ignone(Enter)
+          Work Phone []:        
+          Home Phone []:
+          Other []:
+  Is the information correct? [Y/n] Y
+  ubuntu@ip-172-31-15-180:~$
+
+  Create user without using groupname
+  ------------------------------------
+  ubuntu@ip-172-31-15-180:~$ sudo adduser user2
+  New password:
+  Retype new password:
+  passwd: password updated successfully
+  Changing the user information for user2
+  Enter the new value, or press ENTER for the default
+          Full Name []:
+          Room Number []:
+          Work Phone []:
+          Home Phone []:
+          Other []:
+  Is the information correct? [Y/n] Y
+  ubuntu@ip-172-31-15-180:~$
+
+  -By default it crete user2 group.
+  -In lonux without group can't create user.
+
+See the user details
+--------------------
+  ubuntu@ip-172-31-15-180:~$ cat /etc/passwd
+  -see in last
+  user1:x:1001:1001:,,,:/home/user1:/bin/bash
+  user2:x:1002:1002:,,,:/home/user2:/bin/bash
+
+  user1_home directory- /home/user1:/
+  uer2_home directory- /home/user2
+
+  Q)currently we are in which user?
+  Ans- Ubuntu
+  ubuntu@ip-172-31-15-180:~$ pwd
+  /home/ubuntu
+
+Switching between Users (su - username) ubuntu to user1 group
+------------------------
+  -Switch ubuntu to user1
+  ubuntu@ip-172-31-15-180:~$ su - user1
+  Password:
+  user1@ip-172-31-15-180:~$ pwd
+  /home/user1
+
+  Q)How to switch to user1 to ubuntu
+  - ubuntu hasn't any password right?
+  - Not possible you can log out and login
+
+Delete user(sudo deluser username)
+------------
+  ubuntu@ip-172-31-15-180:~$ sudo deluser user1
+
+Delete group(sudo delgroup groupname)
+-------------------------------------
+  ubuntu@ip-172-31-15-180:~$ sudo delgroup group1
+
+Change the ownership(chown username filename)
+-------------------
+ubuntu@ip-172-31-15-180:~$ ls -l
+total 0
+-rw-rw-r-- 1 ubuntu ubuntu 0 May 27 21:23 data.txt
+-Who is the owner of data.txt ?
+  -Ubuntu
+Q)How to change the ownership?
+-ubuntu@ip-172-31-15-180:~$ sudo chown user2 data.txt
+
+
+Change data.txt(current group= user2) change group to(group2)
+-------------------------------------------------------------
+  ubuntu@ip-172-31-15-180:~$ sudo chgrp group2 data.txt
+See- 
+  ubuntu@ip-172-31-15-180:~$ ls -l
+  total 0
+  -rw-rw-r-- 1 user2 group2 0 May 27 21:23 data.txt
+  ubuntu@ip-172-31-15-180:~$
+
+Change user2 to change group -group1(sudo usermod -g group1 user2)
+-----------------------------------
+  ubuntu@ip-172-31-15-180:~$ sudo usermod -g group1 user2
+- Bug go to ubuntu home means-Restart
+
+ubuntu@ip-172-31-15-180:~$ su - user2
+Password:
+user2@ip-172-31-15-180:~$ touch data2.txt
+user2@ip-172-31-15-180:~$ ls -l
+total 0
+-rw-rw-r-- 1 user2 group1 0 May 27 22:30 data2.txt
+user2@ip-172-31-15-180:~$
+
+-see-user2 group1 (user2 is group1 user)
+
+ubuntu@ip-172-31-15-180:~$ sudo usermod -g group1 user2
+  -This is for replacement(change user group)
+
+For add user2 to different groups
+---------------------------------
+ubuntu@ip-172-31-15-180:~$ sudo usermod -a -G group1,group2 user2
+ubuntu@ip-172-31-15-180:~$
+
+Change password of the user
+---------------------------
+ubuntu@ip-172-31-15-180:~$ sudo passwd user2
+New password:
+Retype new password:
+passwd: password updated successfully
+ubuntu@ip-172-31-15-180:~$
+
+_ I will give new pass- User2
+
+How to chang current user(ubuntu) password
+-------------------------------------------
+ubuntu@ip-172-31-15-180:~$ sudo passwd
+New password:
+Retype new password:
+passwd: password updated successfully
+ubuntu@ip-172-31-15-180:~$
+
+-I will give ubuntu pass- ubuntu
+check working or not
+--------------------
+ubuntu@ip-172-31-15-180:~$ su - user2
+Password:
+user2@ip-172-31-15-180:~$ su - ubuntu
+Password:
+
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+  
+
+
+
+
+  
+  
