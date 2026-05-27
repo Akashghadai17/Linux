@@ -1,0 +1,199 @@
+SED
+----
+SED=Stream Editor
+- Retrieve, delete and edit data.
+
+retrieve=awk
+delete,edit=sed
+-Realtime mostly use this 2 command not cut command
+
+Print all rows
+--------------
+[ec2-user@ip-172-31-1-83 ~]$ sed 'p' data.txt
+java|2000|language
+java|2000|language
+mysql|5000|database
+mysql|5000|database
+oracle|4000|database
+oracle|4000|database
+python|3000|langauge
+python|3000|langauge
+django|3000|language
+django|3000|language
+
+-It show 2 times for one time use -n
+-------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ sed -n 'p' data.txt
+java|2000|language
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Print only 2nd line
+-------------------
+In awk= 
+[ec2-user@ip-172-31-1-83 ~]$ awk 'NR==2 {print}' data.txt
+mysql|5000|database
+In sed = 
+[ec2-user@ip-172-31-1-83 ~]$ sed -n '2p' data.txt
+mysql|5000|database
+
+Print all lines insted of line 2
+--------------------------------
+In awk
+[ec2-user@ip-172-31-1-83 ~]$ awk 'NR!=2 {print}' data.txt
+java|2000|language
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+In sed
+[ec2-user@ip-172-31-1-83 ~]$ sed -n '2!p' data.txt
+java|2000|language
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+-For retriving allways use awk .
+-For delete , edit use sed .
+
+Delete 
+------
+Q.Delete 1st line 
+
+[ec2-user@ip-172-31-1-83 ~]$ sed '1d' data3.txt
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Delete 1st line and copy to new file then update to original file
+-----------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ sed '1d' data.txt > data7.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data7.txt
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+[ec2-user@ip-172-31-1-83 ~]$ cp data7.txt data.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Q.Delete data from the file directly
+-------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+java|2000|language
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Copy th result to new file
+--------------------------
+Approach-1
+-----------
+[ec2-user@ip-172-31-1-83 ~]$ sed '1d' data.txt > data2.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+java|2000|language
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+[ec2-user@ip-172-31-1-83 ~]$ cat data2.txt
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+-Copy the result into original(data.txt) file
+[ec2-user@ip-172-31-1-83 ~]$ cp data2.txt data.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Approach-2 (-i)
+----------
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+[ec2-user@ip-172-31-1-83 ~]$ sed '1d' data.txt
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt -It can't delete permanently
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+For permanently delete use (-i)
+-------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ sed -i '1d' data.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Edits the file in place and creates a backup file(sed -i.bak.txt)
+-----------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ sed -i.bak '1d' data.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+python|3000|langauge
+django|3000|language
+[ec2-user@ip-172-31-1-83 ~]$ ls -l
+total 16
+-rw-r--r--. 1 ec2-user ec2-user  43 May 27 15:49 data.txt
+-rw-r--r--. 1 ec2-user ec2-user  65 May 27 12:44 data.txt.bak
+-rw-r--r--. 1 ec2-user ec2-user  86 May 27 12:37 data2.txt
+-rw-r--r--. 1 ec2-user ec2-user 106 May 27 11:13 data3.txt
+[ec2-user@ip-172-31-1-83 ~]$
+
+-See data.txt.bak
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt.bak
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Substitute Operation/Change the data
+-------------------------------------
+sed 's/mysql/mysql2/' data.txt 
+s = substitute 
+
+Example
+------
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+python|3000|langauge
+django|3000|language
+
+-Change Python to py
+[ec2-user@ip-172-31-1-83 ~]$ sed 's/python/py/' data.txt
+py|3000|langauge
+django|3000|language
+
+-But it can't change permanently
+-For permanent(-i)
+------------------
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+python|3000|langauge
+django|3000|language
+[ec2-user@ip-172-31-1-83 ~]$
+
+[ec2-user@ip-172-31-1-83 ~]$ sed -i 's/python/py/' data.txt
+[ec2-user@ip-172-31-1-83 ~]$ cat data.txt
+py|3000|langauge
+django|3000|language
+
+-If you recover to original then copy the data.txt.bak file
+
+
+
+
+
