@@ -1,0 +1,111 @@
+awk
+----
+-awk is used for data extraction and reporting. 
+-It works on a line-by-line basis.
+-More powrfull than cut command.
+
+Prints all lines.
+-----------------
+[ec2-user@ip-172-31-1-83 ~]$ awk '{print}' data.txt
+java|2000|language
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Prints the first field. Default delimiter is space.
+---------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' '{print $1}' data.txt
+java
+mysql
+oracle
+python
+django
+
+Prints the first and second field.
+----------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' '{print $1,$2}' data.txt
+java 2000
+mysql 5000
+oracle 4000
+python 3000
+django 3000
+
+In cut(| show )
+--------
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' -f 1-2 data.txt
+java|2000
+mysql|5000
+oracle|4000
+python|3000
+django|3000
+
+-Awk use mostly
+
+Prints lines containing "language"
+-----------------------------------
+create a file
+
+[ec2-user@ip-172-31-1-83 ~]$ cat > data2.txt
+java|2000|language
+mysql|4000|database
+python|3000|language
+django|3000|language
+
+[ec2-user@ip-172-31-1-83 ~]$ awk '/language/{print}' data2.txt
+java|2000|language
+python|3000|language
+django|3000|language
+
+ Prints first field of lines containing "language"
+-------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' '/language/{print $1}' data2.txt
+java
+python
+django
+
+Print course name contain language
+------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' '/language/{print $1}' data2.txt
+java
+python
+
+Print only specific row eg.=2(NR==2)
+------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk 'NR==2 {print}' data.txt
+mysql|5000|database
+
+Print 2nd row with 2nd column
+------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' 'NR==2 {print $2}' data.txt
+5000
+
+Print all rows but except 2 row(NR!=2)
+---------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk "NR!=2 {print}" data.txt
+java|2000|language
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Display courses where course fee is more than 3000
+--------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' '$2>3000 {print}' data.txt
+mysql|5000|database
+oracle|4000|database
+
+-This type of questions not solve in cut command.
+
+Display courses where course fee is more than 2000 and course type is language
+------------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' '$2>2000 && $3=="language" {print}' data.txt
+django|3000|language
+
+    OR
+[ec2-user@ip-172-31-1-83 ~]$ awk -F '|' '$2>2000 && /language/ {print}' data.txt
+django|3000|language
+
+
+
+
+
