@@ -1,0 +1,139 @@
+cut command
+------------
+-If i want to fetch the 5th line so we use cut command.
+
+[ec2-user@ip-172-31-1-83 ~]$ cat > data.txt
+java|2000|language
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Extracts the 5th character from each line.(cut -c 5 data.txt)
+-------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -c 5 data.txt
+|
+l
+l
+o
+g
+
+Extracts characters from the 5th to the 8th position(cut -c 5-8 data.txt)
+-------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -c 5-8 data.txt
+|200
+l|50
+le|4
+on|3
+go|3
+
+Extracts characters from the 5th position to the end of the line(cut -c 5- data.txt)
+------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -c 5- data.txt
+|2000|language
+l|5000|database
+le|4000|database
+on|3000|langauge
+go|3000|language
+
+Extracts the 5th, 7th, and 8th characters.(cut -c 5,7,8 data.txt)
+------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -c 5,7,8 data.txt
+|00
+l50
+l|4
+o|3
+g|3
+
+Extracts the 5th, 7th, and characters from the 8th to 12th position.(cut -c 5,7,8-12 data.txt )
+-----------------------------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -c 5,7,8-12 data.txt
+|000|la
+l5000|d
+l|4000|
+o|3000|
+g|3000|
+
+
+Extracts the 1st field, using | as the delimiter.(cut -d '|' -f 1 data.txt)
+---------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' -f 1 data.txt
+java
+mysql
+oracle
+python
+django
+
+Extracts the 2nd and 3rd fields.(cut -d '|' -f 2-3 data.txt)
+-------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' -f 2-3 data.txt
+2000|language
+5000|database
+4000|database
+3000|langauge
+3000|language
+
+Extracts the 2nd field to the end of the line.(cut -d '|' -f 2- data.txt)
+------------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' -f 2- data.txt
+2000|language
+5000|database
+4000|database
+3000|langauge
+3000|language
+
+Extracts the first to the third field(cut -d '|' -f -3 data.txt )
+-----------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' -f -3 data.txt
+java|2000|language
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Extracts the 1st, 3rd, and 5th fields.(cut -d '|' -f 1,3,5 data.txt)
+--------------------------------------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' -f 1,2,3 data.txt
+java|2000|language
+mysql|5000|database
+oracle|4000|database
+python|3000|langauge
+django|3000|language
+
+Complement/skip
+---------------
+cat > data1.txt
+01|Akash|7665444445|ghadai@gmail.com|BBSR
+
+-If you want hide/skip mobline number show others details .
+-Mob column is 3
+cut -d '|' --complement -f 3 data1.txt
+----------------------------------------
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' --complement -f 3 data1.txt
+01|Akash|ghadai@gmail.com|BBSR
+
+Extracts all fields except the 3rd and 5th(cut -d '|' --complement -f3,5 data.txt )
+------------------------------------------------------------------------------------
+Original(01|Akash|7665444445|ghadai@gmail.com|BBSR)
+
+[ec2-user@ip-172-31-1-83 ~]$ cut -d '|' --complement -f3,5 data1.txt
+01|Akash|ghadai@gmail.com
+
+Extracts all fields except the 3rd to 5th(cut -d '|' --complement –f 3-5 data.txt)
+-----------------------------------------------------------------------------------
+cut -d '|' --complement –f 3-5 data.txt
+
+Extracts all fields except the 3rd to the end(cut -d '|' --complement –f 3- data.txt)
+-------------------------------------------------------------------------------------
+cut -d '|' --complement –f 3- data.txt
+
+Extracts all fields except the first to the 5th(cut -d '|' --complement -f-5 data.txt)
+--------------------------------------------------------------------------------------
+cut -d '|' --complement -f-5 data.txt
+
+
+
+
+
+
+
